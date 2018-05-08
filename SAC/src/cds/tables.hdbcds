@@ -1,0 +1,15 @@
+namespace SACTEST.SAC.cds;
+
+context tables {
+
+    /*@@layout{"layoutInfo":{"x":-259,"y":-87.5}}*/
+    entity TimeTable {
+        key key     : String(10);
+            date    : LocalDate;
+            day     : String(10);
+            month   : String(10);
+            quarter : String(10);
+            year    : String(10);
+            sin     : Decimal(10, 2);
+    };
+};

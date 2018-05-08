@@ -1,0 +1,16 @@
+ID: SACTEST
+_schema-version: '2.0'
+version: 0.0.1
+
+modules:
+ - name: SAC
+   type: hdb
+   path: SAC
+   requires:
+    - name: hdi_SAC
+
+resources:
+ - name: hdi_SAC
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

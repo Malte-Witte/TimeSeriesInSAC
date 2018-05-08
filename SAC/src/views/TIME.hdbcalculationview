@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="SACTEST.SAC.views::TIME" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="TIME"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SACTEST.SAC.cds::tables.TimeTable">
+    <resourceUri>SACTEST.SAC.cds::tables.TimeTable</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="key">
+        <descriptions defaultDescription="key"/>
+      </viewAttribute>
+      <viewAttribute id="date">
+        <descriptions defaultDescription="date"/>
+      </viewAttribute>
+      <viewAttribute id="day">
+        <descriptions defaultDescription="day"/>
+      </viewAttribute>
+      <viewAttribute id="month">
+        <descriptions defaultDescription="month"/>
+      </viewAttribute>
+      <viewAttribute id="year">
+        <descriptions defaultDescription="year"/>
+      </viewAttribute>
+      <viewAttribute id="sin">
+        <descriptions defaultDescription="sin"/>
+      </viewAttribute>
+    
+      <viewAttribute id="quarter">
+        <descriptions defaultDescription="quarter"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SACTEST.SAC.cds::tables.TimeTable">
+      <mapping xsi:type="Calculation:AttributeMapping" target="key" source="key"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="day" source="day"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="month" source="month"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sin" source="sin"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="quarter" source="quarter"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="key" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="key"/>
+      <keyMapping columnObjectName="Projection_1" columnName="key"/>
+    </attribute>
+    <attribute id="date" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="date"/>
+    </attribute>
+    <attribute id="day" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="day"/>
+      <keyMapping columnObjectName="Projection_1" columnName="day"/>
+    </attribute>
+    <attribute id="month" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="month"/>
+      <keyMapping columnObjectName="Projection_1" columnName="month"/>
+    </attribute>
+    <attribute id="year" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="Projection_1" columnName="year"/>
+    </attribute>
+  
+    <attribute id="quarter" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="quarter"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="quarter"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="sin" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="sin"/>
+      <measureMapping columnObjectName="Projection_1" columnName="sin"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="TIMEHIERARCHY">
+      <attributeRef xsi:type="DataFoundation:Attribute">year</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">quarter</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">month</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">day</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="TIMEHIERARCHY" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="TIMEHIERARCHY"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="year" levelType="MDLEVEL_TYPE_TIME_YEARS" order="1" orderAttribute="year" sortDirection="ASC"/>
+            <level levelAttribute="quarter" levelType="MDLEVEL_TYPE_TIME_QUARTERS" order="2" orderAttribute="quarter" sortDirection="ASC"/>
+            <level levelAttribute="month" levelType="MDLEVEL_TYPE_TIME_MONTHS" order="3" orderAttribute="month" sortDirection="ASC"/>
+            <level levelAttribute="day" levelType="MDLEVEL_TYPE_TIME_DAYS" order="4" orderAttribute="day" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
