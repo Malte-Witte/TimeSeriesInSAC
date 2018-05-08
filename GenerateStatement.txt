@@ -1,0 +1,13 @@
+insert into "SACTEST.SAC.cds::tables.TimeTable" ("key", "date", "year", "quarter", "month", "day", "sin") 
+SELECT
+        generated_period_start AS "key",
+        generated_period_start AS "date",
+        YEAR(generated_period_start) AS "year",
+        YEAR(generated_period_start)||SUBSTR(QUARTER(generated_period_start),7,1) AS "quarter",
+        SUBSTR(generated_period_start,0,7) AS "month",
+        generated_period_start AS "day",
+        SIN(DAYOFMONTH(generated_period_start)) AS "sin"
+    FROM
+        SERIES_GENERATE_DATE('INTERVAL 1 DAY', '2016-01-01', '2018-01-01')
+    ORDER BY
+        generated_period_start;
